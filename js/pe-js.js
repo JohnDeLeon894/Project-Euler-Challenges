@@ -14,6 +14,7 @@ function isPrimeFactor(num) {
             if(isPrime(i)){
                 console.log(i + ' is Prime');
                 primeFactors.push(i);
+                setTimeout(function () {}, 100);
             }
         }
 
@@ -31,10 +32,12 @@ function isPrime(item, index, array){
     var isTrue = true;
     for(var i=2; i < item; i++){
         if (item % i === 0){
+            setTimeout(function () {}, 100);
             console.log(i);
             return false;
         }
     }
+    setTimeout(function () {}, 100);
     console.log(i + " true");
     return isTrue;
 }
