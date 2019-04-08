@@ -20,23 +20,26 @@
 // global variables
 var num1=0;
 var num2=0;
-
+var digArray = [];
 //rando num for testing
 var rando1000 = Math.floor(Math.random()*10000 + 1);
 
+/*
+Found a better way.
 // function to seperate the number for comparison purposes
 function intSeparator(int) {
     var sInt = int.toString();
     var x = sInt.length;
     var digArray = [];
-    var halfX = Math.floor(x/2);
+    var rebDigArray = [];
+    var halfX = Math.floor(x/2);                        // may not be needed
     console.log(sInt + " is " + x + " digits long.");
     for (var i = 0; i < x ; i++){
          var intDig = sInt.charAt(i);
          digArray.push(intDig);
     }
     console.log(digArray);
-}
+}*/
 
 // function for math operation. Main function to get sum. Will call functions to seperate the numbers and make the comparisons
 function sumLoop(){
@@ -45,11 +48,36 @@ function sumLoop(){
     for(num1; num1 >100; num1-- ){
         for(num2; num2 > 100; num2--){
             var sum = num1*num2;
-            console.log(num1 + " * " + num2 + " = " + sum);
+            // console.log(num1 + " * " + num2 + " = " + sum);
+            if (spltRevJoin(sum)){
+                console.log(num1 + " * " + num2 + " = " + sum);
+                digArray.push(sum);
+                console.log(digArray);
+
+            }
+
         }
         console.log("Moved through and entire 899 iterations of num2!!! ('O') ");
         num2 = 999;
     }
+    digArray = digArray.sort(function(a, b){return a - b});
+    console.log(digArray[digArray.length - 1]);
+    return digArray[digArray.length - 1];
+
+}
+
+function spltRevJoin(input) {
+
+    var str =input.toString();                   //change all letters to lowercase
+    var spltStrng = str.split("");         //splits string into array
+    var rvrseArray = spltStrng.reverse();           // reverses array
+    var rvrseStrng = rvrseArray.join('');           //joins reversed array to reverse string
+
+    if(str===rvrseStrng) {
+        console.log(str + rvrseStrng);
+        return true;
+    }
+    return false;
 }
 
  // intSeparator(rando1000);
